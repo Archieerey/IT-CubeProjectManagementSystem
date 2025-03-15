@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getGalleries, getGalleryById } from "../services/api";
+import { getGalleries, getGalleryById } from "../api/api";
 
 export const useGalleries = () => {
   const [galleries, setGalleries] = useState([]);

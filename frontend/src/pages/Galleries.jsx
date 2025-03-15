@@ -4,22 +4,24 @@ import { useGalleries } from "../hooks/useGalleries";
 const GalleriesPage = () => {
   const { galleries, loading, error } = useGalleries();
 
-  if (loading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error.message}</div>;
+  if (loading) return <div className="loading">Загрузка...</div>;
+  if (error) return <div className="error">Ошибка: {error.message}</div>;
 
   return (
-    <div>
-      <h1>Галереи</h1>
-      <ul>
-        {galleries.map((gallery) => (
-          <li key={gallery._id}>
-            <Link to={`/galleries/${gallery._id}`}>
-              <h2>{gallery.name}</h2>
-            </Link>
-            <p>{gallery.description}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="galleries-page">
+      <div className="container">
+        <h1>Галереи</h1>
+        <ul className="gallery-list">
+          {galleries.map((gallery) => (
+            <li key={gallery._id} className="gallery-card">
+              <Link to={`/galleries/${gallery._id}`}>
+                <h2>{gallery.name}</h2>
+              </Link>
+              <p>{gallery.description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProjects, getProjectById } from "../services/api";
+import { getProjects, getProjectById } from "../api/api";
 
 export const useProjects = () => {
   const [projects, setProjects] = useState([]);
