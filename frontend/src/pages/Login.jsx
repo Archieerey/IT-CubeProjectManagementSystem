@@ -76,6 +76,57 @@
 
 // export default Login;
 
+// import React, { useState, useContext } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { AuthContext } from '../context/AuthContext';
+// import axios from 'axios';
+
+// const Login = () => {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const { login } = useContext(AuthContext);
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await axios.post('http://localhost:3015/auth/login', {
+//         email,
+//         password,
+//       });
+
+//       console.log('Ответ от сервера:', response);
+//       if (response.data.token) {
+//         await login(response.data.token); // Ждём завершения входа
+//         navigate('/'); // Перенаправляем на главную страницу
+//       }
+//     } catch (err) {
+//       console.error('Ошибка при входе:', err);
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <input
+//         type="email"
+//         placeholder="Email"
+//         value={email}
+//         onChange={(e) => setEmail(e.target.value)}
+//       />
+//       <input
+//         type="password"
+//         placeholder="Пароль"
+//         value={password}
+//         onChange={(e) => setPassword(e.target.value)}
+//       />
+//       <button type="submit">Войти</button>
+//     </form>
+//   );
+// };
+
+// export default Login;
+
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -91,16 +142,8 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3015/auth/login', {
-        email,
-        password,
-      });
-
-      console.log('Ответ от сервера:', response);
-      if (response.data.token) {
-        await login(response.data.token); // Ждём завершения входа
-        navigate('/'); // Перенаправляем на главную страницу
-      }
+      await login(email, password); // Вызываем login из контекста
+      navigate('/'); // Перенаправляем на главную страницу
     } catch (err) {
       console.error('Ошибка при входе:', err);
     }
