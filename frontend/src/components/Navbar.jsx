@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext.jsx';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log('юзер чанжед:', user);
+  }, [user]);
 
   return (
     <nav className="navbar">

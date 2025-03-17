@@ -20,5 +20,4 @@
 
 - **Инструменты:**
   - Git
-  - ESLint
   - Prettier

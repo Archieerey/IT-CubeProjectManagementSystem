@@ -61,7 +61,11 @@ class UserController {
       }
 
       const token = jwt.sign(
-        { _id: user._id },
+        {
+          userId: user.id,
+          email: user.email,
+          name: user.name,
+        },
         process.env.JWT_SECRET,
         { expiresIn: "30d" }
       );
@@ -74,6 +78,7 @@ class UserController {
       });
     } catch (err) {
       console.error(err);
+      console.log(err);
       res.status(500).json({ message: "Ошибка при авторизации" });
     }
   }

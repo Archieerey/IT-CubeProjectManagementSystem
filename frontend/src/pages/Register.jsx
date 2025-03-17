@@ -9,11 +9,13 @@ const Register = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const backendUrl = `http://localhost:${import.meta.env.VITE_BACKEND_PORT}`;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/auth/register', {
+      const response = await axios.post(`${backendUrl}/auth/register`, {
         name,
         email,
         password,
