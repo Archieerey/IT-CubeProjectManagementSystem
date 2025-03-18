@@ -34,7 +34,6 @@ const Register = () => {
         <h2>Регистрация</h2>
         {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit} className="auth-form">
-          <div>
             <label>Имя:</label>
             <input
               type="text"
@@ -43,8 +42,6 @@ const Register = () => {
               className="input"
               required
             />
-          </div>
-          <div>
             <label>Email:</label>
             <input
               type="email"
@@ -53,8 +50,6 @@ const Register = () => {
               className="input"
               required
             />
-          </div>
-          <div>
             <label>Пароль:</label>
             <input
               type="password"
@@ -63,7 +58,6 @@ const Register = () => {
               className="input"
               required
             />
-          </div>
           <button type="submit" className="button">Зарегистрироваться</button>
         </form>
         <p>

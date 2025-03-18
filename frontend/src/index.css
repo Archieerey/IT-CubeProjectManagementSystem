@@ -40,10 +40,11 @@ a:hover {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .button:hover {
-  background-color: darken(var(--primary-color), 10%);
+  background-color: green;
 }
 
 /* Формы */
@@ -161,62 +162,11 @@ a:hover {
   gap: 20px;
 }
 
-.article-card {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.article-card:hover {
-  transform: translateY(-5px);
-}
-
-.auth-page {
-  padding: 50px 0;
-  text-align: center;
-}
-
-.auth-form {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.loading {
-  text-align: center;
-  font-size: 1.2rem;
-  color: var(--primary-color);
-}
-
-.error {
-  text-align: center;
-  font-size: 1.2rem;
-  color: red;
-}
-
-.navbar {
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
-}
-
-.navbar .container {
-  display: flex;
-  justify-content: space-between;
+form {
   align-items: center;
-}
-
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-.navbar-links {
   display: flex;
-  gap: 20px;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .navbar-link {
@@ -233,4 +183,115 @@ a:hover {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для страницы входа */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background-color: var(--background-color);
+  padding: 20px;
+}
+
+.auth-page .container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.auth-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.auth-form .input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.auth-form .input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.auth-form .button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.auth-form .button:hover {
+  background-color: darken(var(--primary-color), 10%);
+}
+
+.auth-form p {
+  text-align: center;
+  margin-top: 15px;
+  color: var(--secondary-color);
+}
+
+.auth-form a {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.auth-form a:hover {
+  text-decoration: underline;
+}
+
+.auth-page .container {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-page .container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.error {
+  color: #dc3545; /* Красный цвет для ошибок */
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.auth-form .input-icon input {
+  padding-left: 40px;
+}
+
+.auth-form .input-icon .icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--secondary-color);
+  font-size: 1.2rem;
 }
