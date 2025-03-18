@@ -59,10 +59,11 @@ const Register = () => {
               required
             />
           <button type="submit" className="button">Зарегистрироваться</button>
-        </form>
-        <p>
+          <p>
           Уже есть аккаунт? <a href="/login">Войдите</a>
         </p>
+        </form>
+
       </div>
     </div>
   );
