@@ -335,9 +335,8 @@ form {
 }
 
 .home-page .links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  display: block;
+  
 }
 
 .home-page .button {
@@ -345,6 +344,7 @@ form {
   color: white;
   border: none;
   padding: 15px 20px;
+width: 100%;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
