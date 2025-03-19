@@ -1,13 +1,13 @@
-import Client from "../module/User.js";
+import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
 export default async (req, res, next) => {
-  const token = (req.headers.authorization || "").replace(/Bearer\s?/, "");
+  const token = req.cookies.jwt;  
   
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      let user = await Client.findById(decoded._id).populate("role");
+      let user = await User.findById(decoded._id).populate("role");
       if (!user) {
         return res.status(403).json({
           message: "Пользователь не найден",

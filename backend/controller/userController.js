@@ -34,6 +34,13 @@ class UserController {
         { expiresIn: "30d" }
       );
 
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Lax",
+        maxAge: 2592000000,
+      });
+
       const { password: _, ...userData } = savedUser._doc;
 
       res.status(201).json({
@@ -62,13 +69,20 @@ class UserController {
 
       const token = jwt.sign(
         {
-          userId: user.id,
+          _id: user.id,
           email: user.email,
           name: user.name,
         },
         process.env.JWT_SECRET,
         { expiresIn: "30d" }
       );
+
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Lax",
+        maxAge: 2592000000,
+      });
 
       const { password: _, ...userData } = user._doc;
 
@@ -212,6 +226,16 @@ class UserController {
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Ошибка при получении проектов" });
+    }
+  }
+
+  static async getMe(req, res) {
+    try {
+      const user = req.user;
+
+      return res.status(200).json({ user })
+    } catch (error) {
+      return res.status(500).json({ message: "Ошибка!" })
     }
   }
 }

@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
       setUser(response.data.user);
     } catch (err) {
       console.error('Ошибка при загрузке данных пользователя:', err);
-      setUser(null);
+      setUser(null);0
     }
   };
 

@@ -11,6 +11,7 @@ import userRoutes from "./routes/userRoutes.js";
 import roleRoutes from "./routes/roleRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import Role from "./models/Role.js";
+import cookieParser from "cookie-parser";
 
 config({ path: ".env" });
 
@@ -57,6 +58,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({
   origin: 'http://localhost:5173', // Разрешить запросы с фронтенда
   credentials: true,
