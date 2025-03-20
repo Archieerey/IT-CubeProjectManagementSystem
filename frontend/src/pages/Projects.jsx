@@ -14,7 +14,7 @@ const ProjectsPage = () => {
         <ul className="project-list">
           {projects.map((project) => (
             <li key={project._id} className="project-card">
-              <Link to={`/projects/${project._id}`}>
+              <Link to={`/project/${project._id}`}>
                 <h2>{project.title}</h2>
               </Link>
               <p>{project.description}</p>

@@ -238,6 +238,21 @@ class UserController {
       return res.status(500).json({ message: "Ошибка!" })
     }
   }
+
+  static async logout(req, res) {
+    try {
+      res.clearCookie('jwt', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+      });
+
+      res.status(200).json({ message: 'Выход выполнен успешно' });
+    } catch (err) {
+      console.error('Ошибка при выходе:', err);
+      res.status(500).json({ message: 'Ошибка при выходе' });
+    }
+  }
 }
 
 export default UserController;

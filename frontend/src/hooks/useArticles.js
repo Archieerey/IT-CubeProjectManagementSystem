@@ -6,6 +6,17 @@ export const useArticles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const fetchArticles = async () => {
+    try {
+      const response = await getArticles();
+      setArticles(response.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -21,7 +32,7 @@ export const useArticles = () => {
     fetchArticles();
   }, []);
 
-  return { articles, loading, error };
+  return { articles, loading, error, fetchArticles };
 };
 
 export const useArticle = (id) => {

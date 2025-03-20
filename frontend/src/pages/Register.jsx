@@ -19,7 +19,10 @@ const Register = () => {
         name,
         email,
         password,
-      });
+      },
+      {withCredentials: true,}
+
+    );
 
       localStorage.setItem('token', response.data.token);
       navigate('/');

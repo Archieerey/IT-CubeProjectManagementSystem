@@ -9,6 +9,7 @@ const authRoutes = express.Router();
 
 authRoutes.post('/register', registerValidation, handleValidationErrors, UserController.register);
 authRoutes.post('/login', loginValidation, handleValidationErrors, UserController.login);
+authRoutes.post('/logout', UserController.logout);
 
 authRoutes.get('/me', authCheck, UserController.getMe);
 

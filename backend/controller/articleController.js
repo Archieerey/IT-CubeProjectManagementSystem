@@ -4,7 +4,8 @@ class ArticleController {
   // СОЗДАНИЕ СТАТЬИ
   static async createArticle(req, res) {
     try {
-      const { title, content, author } = req.body;
+      const { title, content } = req.body;
+      const author = req.user._id;
 
       const newArticle = new Article({
         title,
