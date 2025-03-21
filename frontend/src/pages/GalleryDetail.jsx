@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGallery } from "../hooks/useGalleries";
+// import { useGallery } from "../hooks/useGalleries";
 
 const GalleryDetailPage = () => {
   const { id } = useParams();

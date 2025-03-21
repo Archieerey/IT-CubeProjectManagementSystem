@@ -7,13 +7,9 @@ const generateFileName = (file) => {
   return `${timestamp}${ext}`;
 };
 
-const storage = diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    if (file.fieldname === "avatar") {
-      cb(null, "uploads/avatars/");
-    } else {
-      cb(new Error("Неизвестный файл"), null);
-    }
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
     const fileName = generateFileName(file);

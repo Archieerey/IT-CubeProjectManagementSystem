@@ -23,7 +23,7 @@ const CreateArticleModal = ({ setIsOpenModal, fetchArticles }) => {
             <div className="createModal">
                 <h1>Создание статьи :3</h1>
                 <input type="text" placeholder='Введите заглавие' onChange={(txt) => setTitle(txt.target.value)} />
-                <input type="textarea" placeholder='Введите текст статьи' onChange={(txt) => setContent(txt.target.value)} />
+                <textarea placeholder='Введите текст статьи' onChange={(txt) => setContent(txt.target.value)} />
                 <button type="button" disabled={loading} onClick={createArti}>Создать</button>
             </div>
             <div className="modalTrigger" onClick={() => setIsOpenModal(false)}></div>

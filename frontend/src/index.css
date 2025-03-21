@@ -403,7 +403,7 @@ width: 100%;
   text-align: center;
   margin-bottom: 15px;
 }
-.createModalContainer .createModal input {
+.createModalContainer .createModal input, .createModalContainer .createModal textarea {
   border: none;
   border-bottom: 1px solid #000;
   background-color: transparent;
@@ -412,6 +412,12 @@ width: 100%;
   outline: none;
   width: 100%;
 }
+
+.createModalContainer .createModal textarea {
+  max-width: 100%;
+  min-width: 100%;
+}
+
 .createModalContainer .createModal button {
   border: none;
   background-color: #000;
@@ -443,4 +449,73 @@ width: 100%;
   .home-page .links {
     grid-template-columns: 1fr;
   }
+}
+
+
+/* DROPZONE AND SHi */
+.createModalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.createModal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  z-index: 1001;
+}
+
+.file-upload, .file-dropzone {
+  border: 2px dashed #ccc;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.file-dropzone {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.file-list {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: #f5f5f5;
+  margin: 0.3rem 0;
+  border-radius: 4px;
+}
+
+.modalTrigger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }

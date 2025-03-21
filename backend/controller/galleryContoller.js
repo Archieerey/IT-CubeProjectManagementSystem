@@ -1,20 +1,20 @@
 import Gallery from "../models/Gallery.js";
 
 class GalleryController {
-  // СОЗДАНИЕ ГАЛЕРЕИ
   static async createGallery(req, res) {
     try {
       const { name, description } = req.body;
-
-      const newGallery = new Gallery({
-        name,
-        description,
-      });
-
+      const images = req.files.map(file => ({
+        url: `/uploads/${file.filename}`,
+        name: file.originalname,
+      }));
+  
+      const newGallery = new Gallery({ name, description, images });
       await newGallery.save();
-      return res.status(200).json({ message: "Галерея успешно создана!", gallery: newGallery });
+  
+      res.status(201).json(newGallery);
     } catch (error) {
-      return res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   }
 

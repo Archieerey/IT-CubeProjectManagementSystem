@@ -22,4 +22,28 @@ export const createArticle = (data) => api.post('/article/article/create', data)
 export const login = (data) => api.post("/auth/login", data);
 export const register = (data) => api.post("/auth/register", data);
 
+// api.js
+export const createGallery = async (formData) => {
+  const response = await axios.post(
+    'http://localhost:3015/gallery/create',
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+export const createProject = async (formData) => {
+  const response = await axios.post('/projects', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return response.data;
+};
+
 export default api;
+
