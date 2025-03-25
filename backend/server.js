@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 
 import projectRoutes from './routes/projectRoutes.js';
-import galleryRoutes from './routes/galleryRoutes.js';
 import photoRoutes from './routes/photoRoutes.js';
 import articleRoutes from './routes/articleRoutes.js';
 import userRoutes from "./routes/userRoutes.js";
@@ -12,6 +11,7 @@ import roleRoutes from "./routes/roleRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import Role from "./models/Role.js";
 import cookieParser from "cookie-parser";
+import galleryRoutes from "./routes/galleryRoutes.js";
 
 config({ path: ".env" });
 

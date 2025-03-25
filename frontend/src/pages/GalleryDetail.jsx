@@ -1,27 +1,32 @@
 import { useParams } from "react-router-dom";
-// import { useGallery } from "../hooks/useGalleries";
+import { useGalleries } from "../hooks/useGalleries";
 
 const GalleryDetailPage = () => {
   const { id } = useParams();
-  const { gallery, loading, error } = useGallery(id);
+  console.log('Gallery ID from URL:', id);
+  const { gallery, loading, error } = useGalleries(id);
 
-  if (loading) return <div className="loading">Загрузка...</div>;
-  if (error) return <div className="error">Ошибка: {error.message}</div>;
+if (loading) return <div className="loading">Загрузка...</div>;
+  if (error) {
+    console.error('Error loading gallery:', error);
+    return <div className="error">Ошибка: {error.response?.data?.message || error.message}</div>;
+  }
+  if (!gallery) return <div className="not-found">Галерея не найдена</div>;
 
   return (
     <div className="gallery-detail-page">
       <div className="container">
         <h1>{gallery.name}</h1>
         <p>{gallery.description}</p>
-        <h2>Фотографии</h2>
-        <ul className="photo-list">
-          {gallery.photos.map((photo) => (
-            <li key={photo._id} className="photo-card">
-              <img src={photo.imageUrl} alt={photo.description} />
-              <p>{photo.description}</p>
-            </li>
+        
+        <div className="photos-grid">
+          {gallery.photos?.map((photo) => (
+            <div key={photo._id} className="photo-item">
+              <img src={photo.url} alt={photo.name} />
+              <p>{photo.name}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );

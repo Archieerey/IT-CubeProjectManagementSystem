@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
-import { getGalleries, getGalleryById } from "../api/api";
+import { useState, useEffect } from 'react';
+import api from '../api/api';
 
-export const useGalleries = () => {
-  const [galleries, setGalleries] = useState([]);
+export const useGalleries = (id = null) => {
+  const [gallery, setGallery] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchGalleries = async () => {
+    const fetchData = async () => {
       try {
-        const response = await getGalleries();
-        setGalleries(response.data);
+        setLoading(true);
+        const endpoint = id ? `/gallery/${id}` : '/gallery';
+        const response = await api.get(endpoint);
+        
+        if (id) {
+          setGallery(response.data);
+        } else {
+          // Обработка списка галерей
+        }
       } catch (err) {
         setError(err);
       } finally {
@@ -18,9 +25,9 @@ export const useGalleries = () => {
       }
     };
 
-    fetchGalleries();
-  }, []);
+    fetchData();
+  }, [id]);
 
-  return { galleries, loading, error };
+  return { gallery, loading, error };
 };
 

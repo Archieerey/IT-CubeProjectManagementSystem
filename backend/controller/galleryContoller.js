@@ -1,22 +1,48 @@
 import Gallery from "../models/Gallery.js";
+import Photo from "../models/Photo.js";
 
 class GalleryController {
   static async createGallery(req, res) {
     try {
+      console.log('Request body:', req.body);
+      console.log('Uploaded files:', req.files);
+      
       const { name, description } = req.body;
-      const images = req.files.map(file => ({
-        url: `/uploads/${file.filename}`,
-        name: file.originalname,
-      }));
+      
+      if (!req.files || req.files.length === 0) {
+        return res.status(400).json({ message: "Необходимо загрузить хотя бы одно фото" });
+      }
   
-      const newGallery = new Gallery({ name, description, images });
+      const newGallery = new Gallery({ name, description, photos: [] });
       await newGallery.save();
   
+      const photos = await Promise.all(
+        req.files.map(async (file) => {
+          const newPhoto = new Photo({
+            url: `/uploads/${file.filename}`,
+            name: file.originalname,
+            gallery: newGallery._id
+          });
+          await newPhoto.save();
+          return newPhoto._id;
+        })
+      );
+  
+      newGallery.photos = photos;
+      await newGallery.save();
+  
+      console.log('Created gallery:', newGallery);
       res.status(201).json(newGallery);
+      
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      console.error('Error creating gallery:', error);
+      res.status(500).json({ 
+        message: 'Ошибка при создании галереи',
+        error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      });
     }
   }
+
 
   // ПОЛУЧЕНИЕ ВСЕХ ГАЛЕРЕЙ
   static async getAllGalleries(req, res) {
@@ -31,14 +57,13 @@ class GalleryController {
   // ПОЛУЧЕНИЕ ГАЛЕРЕИ ПО ID
   static async getGalleryById(req, res) {
     try {
-      const { id } = req.params;
-      const gallery = await Gallery.findById(id).populate("photos");
+      const gallery = await Gallery.findById(req.params.id).populate('photos');
       if (!gallery) {
-        return res.status(404).json({ message: "Галерея не найдена!" });
+        return res.status(404).json({ message: 'Галерея не найдена' });
       }
-      return res.status(200).json(gallery);
+      res.json(gallery);
     } catch (error) {
-      return res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   }
 
