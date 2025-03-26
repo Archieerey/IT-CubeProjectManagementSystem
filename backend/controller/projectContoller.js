@@ -4,12 +4,11 @@ class ProjectController {
   // СОЗДАНИЕ ПРОЕКТА
   static async createProject(req, res) {
     try {
-      const { title, description, category, student, instructor } = req.body;
+      const { title, description, student, instructor } = req.body;
 
       const newProject = new Project({
         title,
         description,
-        category,
         student,
         instructor,
       });

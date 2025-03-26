@@ -54,10 +54,10 @@ const ProjectsPage = () => {
         <ul className="project-list">
           {projects.map((project) => (
             <li key={project._id} className="project-card">
-              <Link to={`/project/${project._id}`}>
+              <Link to={`/projects/${project._id}`}>
                 <h2>{project.title}</h2>
                 <div className="meta">
-                  <span>Файлов: {project.files.length}</span>
+                  {/* <span>Файлов: {project.files.length}</span> */}
                   <span>Обновлён: {new Date(project.updatedAt).toLocaleDateString()}</span>
                 </div>
               </Link>

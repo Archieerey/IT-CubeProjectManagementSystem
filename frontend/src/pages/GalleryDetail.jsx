@@ -22,8 +22,8 @@ if (loading) return <div className="loading">Загрузка...</div>;
         <div className="photos-grid">
           {gallery.photos?.map((photo) => (
             <div key={photo._id} className="photo-item">
-              <img src={photo.url} alt={photo.name} />
-              <p>{photo.name}</p>
+              <img src={`http://localhost:${import.meta.env.VITE_BACKEND_PORT}${photo.url}`} alt={photo.name} />
+              {/* <p>{photo.name}</p> */}
             </div>
           ))}
         </div>

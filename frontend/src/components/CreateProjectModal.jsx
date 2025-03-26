@@ -26,10 +26,11 @@ const CreateProjectModal = ({ setIsOpenModal, fetchProjects }) => {
             files.forEach(file => {
                 formData.append('files', file);
             });
-            
-            await createProject(formData);
+            await createProject({ title, description });
             setIsOpenModal(false);
-            fetchProjects();
+            if (typeof fetchProjects === 'function') {
+                await fetchProjects();
+              }
         } catch (error) {
             console.error(error);
         } finally {

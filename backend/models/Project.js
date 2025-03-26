@@ -9,10 +9,7 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  category: {
-    type: String,
-    required: true,
-  },
+  files: [{file:{type: String}}],
   student: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

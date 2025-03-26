@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api from '../api/api';
+import api, { getGalleries, getGalleryById } from '../api/api';
 
 export const useGalleries = (id = null) => {
   const [gallery, setGallery] = useState(null);
@@ -10,14 +10,8 @@ export const useGalleries = (id = null) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const endpoint = id ? `/gallery/${id}` : '/gallery';
-        const response = await api.get(endpoint);
-        
-        if (id) {
-          setGallery(response.data);
-        } else {
-          // Обработка списка галерей
-        }
+        const response = id ? await getGalleryById(id) : await getGalleries();
+        setGallery(response.data);
       } catch (err) {
         setError(err);
       } finally {
@@ -28,6 +22,17 @@ export const useGalleries = (id = null) => {
     fetchData();
   }, [id]);
 
-  return { gallery, loading, error };
+  const fetchGalleries = async () => {
+    try {
+      setLoading(true)
+      const response = await getGalleries();
+      setGallery(response.data);
+    } catch (error) {
+      return false
+    } finally {
+      setLoading(false)
+    }
+  }
+  return { gallery, loading, error, fetchGalleries };
 };
 

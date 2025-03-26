@@ -1,4 +1,6 @@
 /* Глобальные стили */
+* { margin: 0; padding: 0; box-sizing: border-box;}
+
 :root {
   --primary-color: #007bff; /* Основной цвет (синий) */
   --secondary-color: #6c757d; /* Вторичный цвет (серый) */
@@ -134,9 +136,10 @@ a:hover {
 }
 
 .gallery-list {
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  list-style-type: none;
 }
 
 .gallery-card {
@@ -338,8 +341,10 @@ form {
 }
 
 .home-page .links {
-  display: block;
-  
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .home-page .button {
@@ -347,7 +352,6 @@ form {
   color: white;
   border: none;
   padding: 15px 20px;
-width: 100%;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -447,7 +451,12 @@ width: 100%;
   }
 
   .home-page .links {
-    grid-template-columns: 1fr;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 15px;
+  }
+  .home-page .links .button {
+    width: 100%;
   }
 }
 
@@ -480,6 +489,10 @@ width: 100%;
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 4px;
+}
+
+.file-upload input {
+
 }
 
 .file-dropzone {
@@ -518,4 +531,19 @@ width: 100%;
   width: 100%;
   height: 100%;
   cursor: pointer;
+}
+
+.photo-item img {
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.preview-images {
+  display: flex;
+  gap: 15px;
+}
+
+.preview-images img {
+  max-width: 50px;
+  max-height: 50px;
 }

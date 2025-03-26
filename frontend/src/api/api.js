@@ -50,10 +50,10 @@ export const createGallery = async (formData) => {
   return response.json();
 };
 export const createProject = async (formData) => {
-  const response = await axios.post('/projects', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
+  const response = await api.post('/project/project/create', formData, {
+    // headers: {
+    //   'Content-Type': 'multipart/form-data'
+    // }
   });
   return response.data;
 };

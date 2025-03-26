@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import CreateGalleryModal from "../components/CreateGalleryModal";
 
 const GalleriesPage = () => {
-  const { galleries, loading, error, fetchGalleries } = useGalleries();
+  const { gallery, loading, error, fetchGalleries } = useGalleries();
   const { user } = useContext(AuthContext);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -22,13 +22,13 @@ const GalleriesPage = () => {
           </button>
         )}
         <ul className="gallery-list">
-          {galleries.map((gallery) => (
+          {gallery.map((gallery) => (
             <li key={gallery._id} className="gallery-card">
               <Link to={`/galleries/${gallery._id}`}>
                 <h2>{gallery.name}</h2>
                 <div className="preview-images">
                   {gallery.photos.slice(0, 3).map((img, index) => (
-                    <img key={index} src={img.url} alt={img.name} />
+                    <img key={index} src={`http://localhost:${import.meta.env.VITE_BACKEND_PORT}${img.url}`} alt={img.name} />
                   ))}
                 </div>
               </Link>
